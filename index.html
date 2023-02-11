@@ -7,6 +7,16 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style type="text/css">
     /* Add custom styles here */
+    .fixed-sidebar {
+      position: fixed;
+      top: 50px;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      padding: 20px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
   </style>
 </head>
 <body>
@@ -27,39 +37,45 @@
     </nav>
   </header>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <h1>About Us</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, massa id luctus condimentum, metus ante tempor magna, non commodo dolor ligula eu nulla. Quisque congue neque id elit malesuada, eget malesuada sem malesuada.</p>
-    </div>
-  </section>
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Fixed Sidebar -->
+      <div class="col-md-3 fixed-sidebar">
+        <h3>Fixed Sidebar</h3>
+        <p>This is the content of the fixed sidebar. It will always be visible no matter where you navigate within the page.</p>
+      </div>
 
-  <!-- Courses Section -->
-  <section id="courses">
-    <div class="container">
-      <h1>Our Courses</h1>
-      <ul>
-        <li>Course 1</li>
-        <li>Course 2</li>
-        <li>Course 3</li>
-        <li><a href="online-document/index.html">Course 4</a></li>
-      </ul>
-    </div>
-  </section>
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <!-- About Section -->
+        <section id="about">
+          <h1>About Us</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, massa id luctus condimentum, metus ante tempor magna, non commodo dolor ligula eu nulla. Quisque congue neque id elit malesuada, eget malesuada sem malesuada.</p>
+        </section>
 
-  <!-- Teachers Section -->
-  <section id="teachers">
-    <div class="container">
-      <h1>Our Teachers</h1>
-      <ul>
-        <li>Teacher 1</li>
-        <li>Teacher 2</li>
-        <li>Teacher 3</li>
-        <li>Teacher 4</li>
-      </ul>
-    </div>
-  </section>
+        <!-- Courses Section -->
+        <section id="courses">
+          <h1>Our Courses</h1>
+          <ul>
+            <li>Course 1</li>
+            <li>Course 2</li>
+            <li>Course 3</li>
+            <li><a href="online-document/index.html">Course 4</a></li>
+          </ul>
+        </section>
+
+        <!-- Teachers Section -->
+        <section id="teachers">
+          <h1>Our Teachers</h1>
+          <ul>
+            <li>Teacher 1</li>
+            <li>Teacher 2</li>
+            <li>Teacher 3</li>
+            <li>Teacher 4</li>
+          </ul>
+        </div>
+        </section>
 
 </body>
 </html>
