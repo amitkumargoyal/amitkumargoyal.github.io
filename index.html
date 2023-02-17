@@ -4,37 +4,53 @@
     <title>My Personal Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f1f1f1;
-      }
-
-      header {
-        background-color: #333;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-      }
-
-      h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f7f7f7;
         margin: 0;
+        padding: 0;
       }
 
-      nav {
-        display: flex;
-        background-color: #f2f2f2;
-        padding: 10px;
-      }
-
-      nav a {
-        margin-right: 20px;
+      a {
         color: #333;
         text-decoration: none;
       }
 
-      main {
+      header {
+        background-color: #fff;
         padding: 20px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 36px;
+        font-weight: 500;
+      }
+
+      nav {
+        background-color: #f7f7f7;
+        padding: 10px 20px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        margin-right: 20px;
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
       }
 
       section {
@@ -43,10 +59,14 @@
 
       section h2 {
         margin-top: 0;
+        font-size: 24px;
+        font-weight: 500;
       }
 
       section p {
-        line-height: 1.5;
+        line-height: 1.8;
+        font-size: 16px;
+        font-weight: 300;
       }
     </style>
   </head>
@@ -78,5 +98,8 @@
         <p>Include your contact information, such as your email address and office hours, so that students and colleagues can get in touch with you.</p>
       </section>
     </main>
+    <footer>
+      <p>Copyright © 2023 My Personal Page</p>
+    </footer>
   </body>
 </html>
