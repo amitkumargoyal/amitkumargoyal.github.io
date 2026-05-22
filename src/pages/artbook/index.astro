@@ -1,0 +1,225 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// Artbook pages — populated by the build script after extracting from PDF.
+// Each entry expects: /artbook/page-NN.jpg (thumbnail rendered ~800px wide)
+// and /artbook/page-NN-full.jpg (high-res for lightbox, ~1600px wide).
+
+const TOTAL_PAGES = 100; // adjust if the actual count differs
+const pages = Array.from({ length: TOTAL_PAGES }, (_, i) => {
+  const n = String(i + 1).padStart(3, '0');
+  return {
+    n: i + 1,
+    thumb: `/artbook/page-${n}.jpg`,
+    full: `/artbook/page-${n}-full.jpg`,
+  };
+});
+---
+<Base
+  title="Econ Artbook — Amit Goyal"
+  description="A 100-page collection of mathematical postcards drawn in TikZ and Mathcha — economics and mathematics as art."
+  current="artbook"
+>
+  <section class="artbook-intro">
+    <div class="intro-text">
+      <p class="eyebrow">Econ Artbook</p>
+      <h1 style="font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 1rem;">
+        Mathematical postcards
+      </h1>
+      <p style="font-size: 1.1rem; color: var(--ink); line-height: 1.6;">
+        A hundred postcards, drawn over several years in TikZ and Mathcha, each showing one
+        idea from economics or mathematics. Some are theorems made visible; some are little
+        jokes for the initiated; some are simply things I find beautiful.
+      </p>
+      <p style="margin-top: 1.5rem;">
+        <a href="https://drive.google.com/file/d/14wg3_OtGJ-owK1W7NqbgdnqpF8ftPKMv/view?usp=share_link" target="_blank" rel="noopener">
+          Download the full PDF &rarr;
+        </a>
+      </p>
+    </div>
+    <div class="intro-cover">
+      <img src="/artbook/cover.jpg" alt="Cover of the Econ Artbook by Amit Goyal" />
+    </div>
+  </section>
+
+  <hr class="rule-sage" />
+
+  <section class="gallery">
+    {pages.map((p) => (
+      <button
+        class="tile"
+        data-full={p.full}
+        data-n={p.n}
+        aria-label={`Open postcard ${p.n} at full size`}
+      >
+        <img src={p.thumb} alt={`Artbook postcard ${p.n}`} loading="lazy" />
+        <span class="tile-n">{String(p.n).padStart(2, '0')}</span>
+      </button>
+    ))}
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <button class="lightbox-prev" aria-label="Previous">‹</button>
+    <img id="lightbox-img" src="" alt="" />
+    <button class="lightbox-next" aria-label="Next">›</button>
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+</Base>
+
+<style>
+  .artbook-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 2rem 0 3rem;
+  }
+  .intro-cover img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    aspect-ratio: 240.94 / 141.73;
+    object-fit: cover;
+  }
+  @media (max-width: 800px) {
+    .artbook-intro { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+    padding: 1rem 0 3rem;
+  }
+  .tile {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 0;
+    cursor: zoom-in;
+    position: relative;
+    transition: transform 180ms ease, border-color 180ms ease;
+    overflow: hidden;
+    font: inherit;
+  }
+  .tile:hover {
+    transform: translateY(-2px);
+    border-color: var(--sage);
+  }
+  .tile img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 240.94 / 141.73;
+    object-fit: cover;
+    background: var(--bg);
+  }
+  .tile-n {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0.6rem;
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+    background: rgba(250, 247, 242, 0.85);
+    padding: 0.05rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 38, 32, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 2rem;
+  }
+  .lightbox[hidden] { display: none; }
+  #lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    background: var(--bg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute;
+    background: none;
+    border: 1px solid rgba(250,247,242,0.4);
+    color: var(--bg);
+    font-family: var(--display);
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox-close { top: 1.5rem; right: 1.5rem; }
+  .lightbox-prev  { left: 1.5rem;  top: 50%; transform: translateY(-50%); }
+  .lightbox-next  { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+    background: rgba(250,247,242,0.15);
+  }
+  .lightbox-caption {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--bg);
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.95rem;
+    opacity: 0.7;
+  }
+</style>
+
+<script>
+  // Lightbox behaviour
+  const tiles = document.querySelectorAll<HTMLButtonElement>('.tile');
+  const lb    = document.getElementById('lightbox') as HTMLElement;
+  const img   = document.getElementById('lightbox-img') as HTMLImageElement;
+  const cap   = document.getElementById('lightbox-caption') as HTMLElement;
+  const close = document.querySelector<HTMLButtonElement>('.lightbox-close');
+  const prev  = document.querySelector<HTMLButtonElement>('.lightbox-prev');
+  const next  = document.querySelector<HTMLButtonElement>('.lightbox-next');
+
+  let current = 0;
+  const items = Array.from(tiles).map((t) => ({
+    full: t.dataset.full!,
+    n: Number(t.dataset.n),
+  }));
+
+  function open(idx: number) {
+    current = idx;
+    img.src = items[current].full;
+    cap.textContent = `Postcard ${String(items[current].n).padStart(2, '0')} of ${items.length}`;
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function hide() {
+    lb.hidden = true;
+    document.body.style.overflow = '';
+  }
+  function step(d: number) {
+    open((current + d + items.length) % items.length);
+  }
+
+  tiles.forEach((t, i) => t.addEventListener('click', () => open(i)));
+  close?.addEventListener('click', hide);
+  prev?.addEventListener('click', () => step(-1));
+  next?.addEventListener('click', () => step(1));
+  lb.addEventListener('click', (e) => { if (e.target === lb) hide(); });
+  document.addEventListener('keydown', (e) => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape')     hide();
+    if (e.key === 'ArrowLeft')  step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+</script>

@@ -1,0 +1,329 @@
+---
+import Base from '../layouts/Base.astro';
+import katex from 'katex';
+
+const problemMath = katex.renderToString(
+  String.raw`\text{Let } u(x,y) = x^{\alpha} y^{1-\alpha}.\;\text{Show that } x^\star(p,m) = \tfrac{\alpha m}{p_x}.`,
+  { displayMode: false, throwOnError: false, output: 'html' }
+);
+---
+<Base title="Amit Goyal" current="home">
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Economics, taught with rigour</p>
+      <h1>Amit Goyal</h1>
+      <p class="hero-sub">
+        I teach mathematical economics to students aspiring to MA and PhD programmes
+        worldwide — at <a href="https://econschool.in">Econschool</a>, on
+        <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube</a>,
+        and in affiliation with NYU Abu Dhabi.
+      </p>
+      <p class="hero-meta">
+        Delhi · Abu Dhabi &nbsp;·&nbsp; <a href="mailto:amit@econschool.in">amit@econschool.in</a>
+      </p>
+    </div>
+
+    <!-- A real equation as visual anchor — signals what this site is about
+         within the first second, far better than a photo would. -->
+    <aside class="hero-fig">
+      <a class="featured-postcard" href="/artbook/" aria-label="View the Econ Artbook">
+        <img src="/artbook/page-001.jpg" alt="Postcard from the Econ Artbook: the Utility Maximization Problem with five cases of the price ratio." />
+        <div class="featured-caption">
+          <em>A postcard from the Artbook.</em>
+          The utility maximization problem with min-preferences, drawn across
+          five regions of the price ratio &mdash; one of a hundred.
+        </div>
+      </a>
+    </aside>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====== SELECTED WORK ====== -->
+  <section>
+    <p class="eyebrow">Selected work</p>
+    <h2>Things I&rsquo;ve made</h2>
+    <p style="color:var(--ink-soft); max-width: 60ch;">
+      A small, hand-picked set rather than a complete archive. Each of these is
+      something I&rsquo;d actually want a serious student to see first.
+    </p>
+
+    <div class="work-grid">
+      <a class="work-card" href="/artbook/">
+        <div class="work-card-thumb work-card-thumb--art">
+          <div class="postcard-mosaic">
+            <img src="/artbook/page-014.jpg" alt="" loading="lazy" />
+            <img src="/artbook/page-029.jpg" alt="" loading="lazy" />
+            <img src="/artbook/page-049.jpg" alt="" loading="lazy" />
+            <img src="/artbook/page-076.jpg" alt="" loading="lazy" />
+          </div>
+        </div>
+        <div class="work-card-meta">
+          <h3 class="work-card-title">Econ Artbook</h3>
+          <p class="work-card-blurb">A 100-page collection of mathematical postcards drawn in TikZ &mdash; economics and mathematics rendered as art.</p>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">
+        <div class="work-card-thumb work-card-thumb--video">
+          <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="200" height="140" fill="#F4EFE6"/>
+            <!-- play triangle -->
+            <circle cx="100" cy="70" r="28" fill="none" stroke="#5A1BA6" stroke-width="1.2"/>
+            <polygon points="93,58 93,82 114,70" fill="#5A1BA6"/>
+            <text x="100" y="120" text-anchor="middle" font-family="serif" font-style="italic" font-size="11" fill="#7A6F62">@econ.school</text>
+          </svg>
+        </div>
+        <div class="work-card-meta">
+          <h3 class="work-card-title">Research-to-problem videos</h3>
+          <p class="work-card-blurb">Translating Akerlof, Milgrom, Diamond&ndash;Dybvig and others into MA-level problems with full working.</p>
+        </div>
+      </a>
+
+     <a class="work-card" href="/problems/">
+        <div class="work-card-thumb work-card-thumb--problem">
+          <div class="problem-thumb">
+            <p class="problem-tag"><em>Problem 3.</em></p>
+            <div class="problem-math" set:html={problemMath}></div>
+          </div>
+        </div>
+        <div class="work-card-meta">
+          <h3 class="work-card-title">Problem sets</h3>
+          <p class="work-card-blurb">Selected research-to-problem PDFs with complete solutions, organised by paper. <em>Coming soon.</em></p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====== WHAT I DO ====== -->
+  <section class="what">
+    <p class="eyebrow">What I do</p>
+    <h2>Three things, mostly</h2>
+
+    <div class="what-grid">
+      <div>
+        <h3>Teach</h3>
+        <p>
+          I run <a href="https://econschool.in">Econschool</a>, a preparatory programme
+          for students aspiring to MA and PhD programmes in economics &mdash; DSE, ISI,
+          JNU, and international universities. Microeconomics, macroeconomics, statistics,
+          mathematics, and game theory at graduate level.
+        </p>
+      </div>
+      <div>
+        <h3>Publish</h3>
+        <p>
+          On <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube</a>
+          (around 9,000 subscribers) and in writing. The work I care about most is the
+          research-to-problem format &mdash; taking landmark papers and producing
+          rigorous, fully-worked problems an MA student can actually solve.
+        </p>
+      </div>
+      <div>
+        <h3>Build</h3>
+        <p>
+          Curriculum, a forum-based student community, an artbook, tooling. The point
+          is to make a serious mathematical economics education available to anyone,
+          anywhere &mdash; not just to students who happen to be in the right city.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====== CONTACT ====== -->
+  <section class="contact">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Email is best</h2>
+    <p>
+      Whether you&rsquo;re a student with questions about the programme, a collaborator with an
+      idea, or simply someone interested in economics &mdash; I&rsquo;m happy to hear from you.
+    </p>
+    <p class="contact-line">
+      <a href="mailto:amit@econschool.in">amit@econschool.in</a>
+    </p>
+  </section>
+
+</Base>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 3rem 0 4rem;
+  }
+  .hero-text h1 {
+    margin: 0.25rem 0 1.5rem;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 36ch;
+  }
+  .hero-meta {
+    color: var(--ink-faint);
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+  }
+
+  /* The featured postcard in the hero — the postcard already has its own
+     header, ES mark, and frame, so we let it stand alone without extra chrome. */
+  .hero-fig {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .featured-postcard {
+    display: block;
+    border: 0;  /* override global a underline */
+    color: var(--ink-soft);
+    text-align: center;
+    transition: transform 200ms ease;
+  }
+  .featured-postcard:hover { transform: translateY(-2px); color: var(--ink-soft); }
+  .featured-postcard img {
+    display: block;
+    width: 100%;
+    max-width: 28rem;
+    height: auto;
+    border: 1px solid var(--rule);
+    aspect-ratio: 240.94 / 141.73;
+    object-fit: cover;
+  }
+  .featured-caption {
+    margin-top: 0.85rem;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 28rem;
+  }
+  .featured-caption em { color: var(--violet); font-style: italic; font-weight: 500; }
+
+  /* ===== SELECTED WORK ===== */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .work-card {
+    display: block;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);  /* override the global a underline */
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  .work-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--sage);
+    color: var(--ink);
+  }
+
+  /* Mosaic of postcards in the Artbook tile */
+  .postcard-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+    height: 100%;
+  }
+  .postcard-mosaic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: var(--bg);
+  }
+
+  .work-card-thumb {
+    aspect-ratio: 240.94 / 141.73;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+  }
+  .work-card-thumb svg { width: 100%; height: 100%; display: block; }
+  .work-card-meta { padding: 1rem 1.25rem 1.25rem; }
+  .work-card-title {
+    font-family: var(--display);
+    font-variant: normal;
+    letter-spacing: 0;
+    color: var(--violet);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 0.4rem;
+  }
+  .work-card-blurb {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ===== WHAT I DO ===== */
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .what-grid h3 {
+    color: var(--terracotta);
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .what-grid p { font-size: 0.98rem; color: var(--ink); }
+
+  /* ===== CONTACT ===== */
+  .contact-line {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  .contact-line a { border-color: var(--terracotta-soft); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem 0 3rem; }
+    .work-grid { grid-template-columns: 1fr; }
+    .what-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .problem-thumb {
+    padding: 1rem 1.25rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #FAF7F2;
+    font-family: var(--serif);
+    font-size: 0.78rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .problem-tag {
+    color: var(--violet);
+    font-style: italic;
+    margin: 0 0 0.4rem;
+    font-family: var(--display);
+    font-size: 0.95rem;
+  }
+  .problem-math {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .problem-math .katex { font-size: 0.95em; }
+</style>

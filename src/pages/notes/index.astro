@@ -1,0 +1,100 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// When you write notes, place them in src/pages/notes/*.mdx
+// Astro will auto-discover them via this glob:
+const allNotes = await Astro.glob('./*.mdx').catch(() => []);
+const notes = allNotes
+  .map((n: any) => ({
+    title: n.frontmatter.title as string,
+    date: n.frontmatter.date as string,
+    blurb: n.frontmatter.blurb as string | undefined,
+    url: n.url as string,
+  }))
+  .sort((a: any, b: any) => (b.date > a.date ? 1 : -1));
+---
+<Base
+  title="Notes — Amit Goyal"
+  description="Short essays on teaching mathematical economics."
+  current="notes"
+>
+  <section style="padding: 2rem 0 3rem;">
+    <p class="eyebrow">Writing</p>
+    <h1 style="font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 1rem;">Notes</h1>
+    <p style="max-width: 60ch; font-size: 1.1rem; color: var(--ink); line-height: 1.6;">
+      Short essays on teaching mathematical economics &mdash; on what works in the classroom,
+      what gets lost between research and pedagogy, and what I&rsquo;m learning as I go.
+    </p>
+  </section>
+
+  <hr class="rule-sage" />
+
+  {notes.length === 0 ? (
+    <section class="placeholder">
+      <div class="placeholder-card">
+        <p class="placeholder-eyebrow">Forthcoming</p>
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">No notes yet</h2>
+        <p>I'll start posting here once I have a few short pieces ready. In the meantime, longer-form material is on the <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube channel</a>.</p>
+      </div>
+    </section>
+  ) : (
+    <section class="notes-list">
+      {notes.map((n: any) => (
+        <article class="note-row">
+          <time>{n.date}</time>
+          <h3><a href={n.url}>{n.title}</a></h3>
+          {n.blurb && <p>{n.blurb}</p>}
+        </article>
+      ))}
+    </section>
+  )}
+</Base>
+
+<style>
+  .placeholder { padding: 2rem 0; }
+  .placeholder-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 2.5rem;
+    max-width: 36rem;
+    position: relative;
+  }
+  .placeholder-card::before {
+    content: "";
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid var(--sage-soft);
+    pointer-events: none;
+  }
+  .placeholder-eyebrow {
+    font-variant: small-caps;
+    letter-spacing: 0.12em;
+    color: var(--sage);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  .notes-list { padding: 2rem 0; }
+  .note-row {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .note-row time {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+  }
+  .note-row h3 {
+    font-family: var(--display);
+    color: var(--violet);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0.25rem 0 0.5rem;
+    font-variant: normal;
+    letter-spacing: 0;
+  }
+  .note-row h3 a { color: inherit; border: 0; }
+  .note-row h3 a:hover { color: var(--terracotta); }
+  .note-row p { color: var(--ink-soft); margin: 0; }
+</style>

@@ -1,0 +1,54 @@
+---
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+---
+<Base title={`${frontmatter.title} — Amit Goyal`} description={frontmatter.blurb} current="notes">
+  <article class="note">
+    <p class="eyebrow">Note</p>
+    <h1>{frontmatter.title}</h1>
+    <p class="date">{frontmatter.date}</p>
+    <hr class="rule-sage" />
+    <div class="prose">
+      <slot />
+    </div>
+    <hr class="rule" />
+    <p><a href="/notes/">&larr; All notes</a></p>
+  </article>
+</Base>
+
+<style>
+  .note {
+    padding: 2rem 0 3rem;
+    max-width: 38rem;
+  }
+  .note h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0.5rem 0 1rem;
+  }
+  .note .date {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--ink-faint);
+    margin-bottom: 0;
+  }
+  .prose {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .prose :global(h2) {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .prose :global(p) { max-width: none; }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--sage);
+    padding-left: 1.25rem;
+    margin-left: 0;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .prose :global(.katex-display) {
+    margin: 1.75rem 0;
+  }
+</style>

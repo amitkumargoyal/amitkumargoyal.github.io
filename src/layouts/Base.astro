@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  current?: 'home' | 'artbook' | 'problems' | 'notes' | 'about';
+}
+
+const {
+  title,
+  description = 'Amit Goyal — Economics Coach at Econschool, Academic Specialist at NYU Abu Dhabi.',
+  current = 'home',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Amit Goyal" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="site-nav">
+        <a href="/" class="site-mark">Amit Goyal</a>
+        <div class="links">
+          <a href="/" class={current === 'home' ? 'active' : ''}>Home</a>
+          <a href="/artbook/" class={current === 'artbook' ? 'active' : ''}>Artbook</a>
+          <a href="/problems/" class={current === 'problems' ? 'active' : ''}>Problems</a>
+          <a href="/notes/" class={current === 'notes' ? 'active' : ''}>Notes</a>
+          <a href="https://econschool.in" target="_blank" rel="noopener">Econschool ↗</a>
+        </div>
+      </nav>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <div>© Amit Goyal · <a href="https://econschool.in">Econschool</a></div>
+        <div>
+          <a href="mailto:amit@econschool.in">amit@econschool.in</a>
+          &nbsp;·&nbsp;
+          <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube</a>
+          &nbsp;·&nbsp;
+          <a href="https://twitter.com/amit_k_goyal" target="_blank" rel="noopener">Twitter</a>
+          &nbsp;·&nbsp;
+          <a href="https://github.com/amitkumargoyal" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

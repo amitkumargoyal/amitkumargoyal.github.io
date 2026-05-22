@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Problems — Amit Goyal"
+  description="Research-to-problem PDFs translating landmark economics papers into MA-level problems."
+  current="problems"
+>
+  <section style="padding: 2rem 0 3rem;">
+    <p class="eyebrow">Research-to-problem series</p>
+    <h1 style="font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 1rem;">
+      Problems from papers
+    </h1>
+    <p style="max-width: 60ch; font-size: 1.1rem; color: var(--ink); line-height: 1.6;">
+      A growing series of problem sets, each taking a landmark paper in economics and
+      turning it into a rigorous, fully-worked problem that a strong MA student can solve.
+      The goal is not the result &mdash; the result is in the paper. The goal is the
+      <em>route</em> from primitive assumptions to the result, made walkable.
+    </p>
+  </section>
+
+  <hr class="rule-sage" />
+
+  <section class="placeholder">
+    <div class="placeholder-card">
+      <p class="placeholder-eyebrow">In preparation</p>
+      <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">First batch coming soon</h2>
+      <p>
+        The first problem sets to be published here will cover Akerlof on the market for
+        lemons, Diamond &amp; Dybvig on bank runs, and Milgrom on auction design. Each will
+        ship as a PDF with a video walkthrough on the YouTube channel.
+      </p>
+      <p style="margin-top: 1.5rem;">
+        In the meantime, the existing material is on
+        <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube</a>
+        and at <a href="https://econschool.in">Econschool</a>.
+      </p>
+    </div>
+  </section>
+
+  <!--
+    When ready, replace the placeholder section with a list like this:
+
+    <section class="problem-list">
+      {problems.map((p) => (
+        <article class="problem-row">
+          <div class="problem-meta">
+            <p class="problem-paper">{p.paper}</p>
+            <h3 class="problem-title">{p.title}</h3>
+            <p class="problem-blurb">{p.blurb}</p>
+            <p>
+              <a href={p.pdf}>Download PDF</a> &nbsp;·&nbsp;
+              <a href={p.video}>Watch on YouTube</a>
+            </p>
+          </div>
+        </article>
+      ))}
+    </section>
+  -->
+</Base>
+
+<style>
+  .placeholder { padding: 2rem 0; }
+  .placeholder-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 2.5rem;
+    max-width: 36rem;
+    position: relative;
+  }
+  .placeholder-card::before {
+    content: "";
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid var(--sage-soft);
+    pointer-events: none;
+  }
+  .placeholder-eyebrow {
+    font-variant: small-caps;
+    letter-spacing: 0.12em;
+    color: var(--sage);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+</style>
