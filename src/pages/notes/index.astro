@@ -1,17 +1,21 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-// When you write notes, place them in src/pages/notes/*.mdx
-// Astro will auto-discover them via this glob:
-const allNotes = await Astro.glob('./*.mdx').catch(() => []);
-const notes = allNotes
-  .map((n: any) => ({
-    title: n.frontmatter.title as string,
-    date: n.frontmatter.date as string,
-    blurb: n.frontmatter.blurb as string | undefined,
-    url: n.url as string,
-  }))
-  .sort((a: any, b: any) => (b.date > a.date ? 1 : -1));
+// Auto-discover any MDX notes in this folder. Empty list is fine.
+let notes: Array<{ title: string; date: string; blurb?: string; url: string }> = [];
+try {
+  const mod: any = (import.meta as any).glob('./*.mdx', { eager: true });
+  notes = Object.entries(mod)
+    .map(([path, m]: [string, any]) => ({
+      title: m.frontmatter?.title ?? 'Untitled',
+      date: m.frontmatter?.date ?? '',
+      blurb: m.frontmatter?.blurb,
+      url: path.replace('./', '/notes/').replace('.mdx', '/'),
+    }))
+    .sort((a, b) => (b.date > a.date ? 1 : -1));
+} catch (e) {
+  notes = [];
+}
 ---
 <Base
   title="Notes — Amit Goyal"
@@ -34,12 +38,12 @@ const notes = allNotes
       <div class="placeholder-card">
         <p class="placeholder-eyebrow">Forthcoming</p>
         <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">No notes yet</h2>
-        <p>I'll start posting here once I have a few short pieces ready. In the meantime, longer-form material is on the <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube channel</a>.</p>
+        <p>I&rsquo;ll start posting here once I have a few short pieces ready. In the meantime, longer-form material is on the <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube channel</a>.</p>
       </div>
     </section>
   ) : (
     <section class="notes-list">
-      {notes.map((n: any) => (
+      {notes.map((n) => (
         <article class="note-row">
           <time>{n.date}</time>
           <h3><a href={n.url}>{n.title}</a></h3>
