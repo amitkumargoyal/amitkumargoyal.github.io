@@ -30,8 +30,9 @@ src/
     problems/index.astro /problems/
     notes/index.astro    /notes/
     notes/*.mdx          /notes/{slug}/
+    cv/index.astro       /cv/
   styles/global.css      All design tokens and base styles
-public/         Static files served as-is (favicon, images, artbook/)
+public/         Static files served as-is (favicon, images, artbook/, cv.pdf)
 scripts/        One-off helper scripts (Artbook extraction, etc.)
 ```
 
@@ -68,6 +69,14 @@ an updated source PDF, the helper script does it for you:
 
 **A new problem set.** Replace the placeholder block in `src/pages/problems/index.astro`
 with a list. The comment in the file shows the structure.
+
+**Updating the CV.** Two places to keep in sync:
+
+1. Replace `public/cv.pdf` with the new file (keep the filename as `cv.pdf`).
+2. Update the rendered HTML content in `src/pages/cv/index.astro` to match, and
+   bump the `lastUpdated` constant at the top of that file.
+
+If the CV gains or drops a section, edit the page template alongside the content.
 
 ## Design tokens
 
