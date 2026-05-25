@@ -4,7 +4,7 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description?: string;
-  current?: 'home' | 'artbook' | 'problems' | 'notes' | 'about';
+  current?: 'home' | 'artbook' | 'problems' | 'notes' | 'cv' | 'about';
 }
 
 const {
@@ -35,6 +35,7 @@ const {
           <a href="/artbook/" class={current === 'artbook' ? 'active' : ''}>Artbook</a>
           <a href="/problems/" class={current === 'problems' ? 'active' : ''}>Problems</a>
           <a href="/notes/" class={current === 'notes' ? 'active' : ''}>Notes</a>
+          <a href="/cv/" class={current === 'cv' ? 'active' : ''}>CV</a>
           <a href="https://econschool.in" target="_blank" rel="noopener">Econschool ↗</a>
         </div>
       </nav>
