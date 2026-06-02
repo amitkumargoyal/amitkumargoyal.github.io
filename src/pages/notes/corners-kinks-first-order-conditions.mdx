@@ -1,0 +1,60 @@
+---
+layout: ../../layouts/Note.astro
+title: Corners, kinks, and the fine print of first-order conditions
+date: 2026-06-02
+blurb: Why I teach the standard optimal-choice conditions from the graph — the equation hides the differentiability, interiority, and curvature it depends on.
+---
+
+We teach a few conditions and use them all the time. A competitive firm supplies where price equals marginal cost. A consumer picks the bundle where the marginal rate of substitution equals the price ratio. A monopolist produces where marginal revenue equals marginal cost. Each one is correct, and each is useful. But the way we usually write it at the board hides the assumptions it rests on.
+
+Each of these is a *first-order condition*. It sets a derivative, or a ratio of derivatives, equal to a price. To write it down at all, three things must hold. The objective must be differentiable at the optimum, or there is no derivative to set. The optimum must be interior, or the condition is an inequality, not an equation. And the objective must have the right curvature, or the point we find may be a minimum, or a local maximum that some other point beats. The clean equation is the case where all three hold together.
+
+I teach these conditions from the graph rather than from the Lagrangian for one reason: the graph shows which of the three assumptions is doing the work, and what happens when one of them quietly fails.
+
+## The kink: there is no derivative to set
+
+Take perfect complements, $u(x,y) = \min\{\alpha x, \beta y\}$. The indifference curves are L-shaped. At the corner of each L the curve has no tangent, so the marginal rate of substitution is not defined. There is no number to set equal to $p_x/p_y$. The tangency condition is not wrong here; we simply cannot ask it.
+
+The problem still has a clear answer. The best bundle sits at the kink, where $\alpha x = \beta y$. Combine that with the budget line $p_x x + p_y y = m$ and you get
+
+$$
+x = \frac{\beta m}{\beta p_x + \alpha p_y}, \qquad y = \frac{\alpha m}{\beta p_x + \alpha p_y}.
+$$
+
+On the graph this is easy to see. The corner of every L sits on the ray $\alpha x = \beta y$. The best affordable bundle is the point where the budget line crosses that ray: the corner of the highest L the budget can reach. Any other point on the budget line lies on an arm of a lower L, paying for extra units of one good that add nothing. 
+
+<img src="/notes/leontief-kink.svg" alt="Perfect complements: L-shaped indifference curves; the budget line crosses the ray alpha x equals beta y at the kink of the highest attainable curve, which is the optimum." style="display:block;margin:1.5rem auto;width:100%;max-width:28rem;height:auto" />
+
+*Perfect complements. The optimum is the kink where the budget line meets the ray $\alpha x = \beta y$ — the corner of the highest indifference curve it can reach.*
+
+The same thing happens to a firm with a kinked cost curve — a capacity limit, or a switch between two methods of production. At the kink a whole range of prices makes the same output best, and $p = MC$ becomes $MC^{-} \le p \le MC^{+}$.
+
+## The corner: the condition becomes an inequality
+
+Now take perfect substitutes, $u(x,y) = \alpha x + \beta y$. The indifference curves are straight lines with slope $\alpha/\beta$. The budget line is also straight, with slope $p_x/p_y$. Two straight lines either cross once or lie on top of each other. If they cross, the consumer moves along the budget line to a corner. If they coincide — which needs $\alpha/\beta = p_x/p_y$ exactly — every point on the budget line is equally good.
+
+So the interior tangency in the textbook is a special, knife-edge case. Usually the answer is a corner: all $x$ when $\alpha/p_x > \beta/p_y$, all $y$ when $\alpha/p_x < \beta/p_y$. At that corner the marginal rate of substitution does not equal the price ratio. What holds instead is an inequality. At the $y = 0$ corner, $MRS \ge p_x/p_y$, and the gap tells you how much the consumer would lose by being made to buy any $y$. This is the complementary-slackness part of the Kuhn–Tucker conditions, and the graph shows it directly: the budget line is flatter than every indifference line it meets, so the best you can do is go to the edge.
+
+<img src="/notes/perfect-substitutes-corner.svg" alt="Perfect substitutes: straight indifference lines steeper than the flatter budget line, so the optimum is the corner on the x-axis." style="display:block;margin:1.5rem auto;width:100%;max-width:30rem;height:auto" />
+
+*Perfect substitutes. The indifference lines are steeper than the budget line, so the consumer slides to the corner; tangency never holds.*
+
+It helps to be clear about why this case fails, because it is not about curvature. Linear utility is quasi-concave as well as differentiable. The only thing that fails is interiority. The diagnosis matters: this corner and the cost-curve minimum in the next section look similar but break for opposite reasons.
+
+## The wrong curvature: the equation finds a minimum
+
+The clearest example is on the production side. A competitive firm with the usual U-shaped marginal cost faces $p = MC(q)$. That equation can have two solutions: one on the falling part of $MC$, one on the rising part. The first-order condition $\pi'(q) = p - MC(q) = 0$ holds at both. The second-order condition $\pi''(q) = -MC'(q) < 0$ picks the rising part, where $MC'(q) > 0$. On the falling part the same equation marks a profit minimum: moving output either way raises profit. A student who only remembers &ldquo;produce where $p = MC$&rdquo; can, with a U-shaped $MC$ and a low price, land on the worst output available. The graph fixes this: the right crossing is the one where marginal cost is rising through the price.
+
+The rising solution is still not the full story. If $p$ drops below minimum average variable cost, the firm shuts down and produces $q = 0$. That is a corner, and $p = MC$ no longer holds. So the supply curve is the rising part of $MC$ above $AVC$, then a jump to zero below it. You would not guess that shape from the equation, but it draws itself once you put $AVC$ on the same axes.
+
+<img src="/notes/u-shaped-mc.svg" alt="U-shaped marginal cost cut twice by the price line: the falling-branch root is a profit minimum, the rising-branch root a profit maximum; below minimum average variable cost the firm shuts down." style="display:block;margin:1.5rem auto;width:100%;max-width:32rem;height:auto" />
+
+*A U-shaped $MC$ meets the price at two outputs. Only the rising-branch root is the profit maximum; below $\min AVC$ the firm shuts down.*
+
+The consumer-side version is non-convex preferences: indifference curves that bend away from the origin, as with $u(x,y) = x^2 + y^2$. Here the tangency condition is met at the worst bundle on the budget line, and the best bundles are at the corners. A student who trusts tangency walks straight into the minimum. Convex preferences — that is, quasi-concave $u$ — are exactly what rule this out and make the tangency point the true best. The condition we rely on is quietly using curvature it never mentions.
+
+The monopolist&rsquo;s $MR = MC$ has the same fine print. It is necessary for an interior optimum and finds a turning point of profit. To be sure it is a maximum, marginal revenue must cross marginal cost from above: $MR'(q) < MC'(q)$. On the graph this is the familiar picture of $MR$ cutting $MC$ on the way down. If the curves bend, the equation can have several solutions and only the right crossing is the maximum; with a binding capacity it can have none, and the answer is a corner.
+
+## Why I draw before I differentiate
+
+The Lagrangian is faster, and in the well-behaved case it gives exactly the right answer. But it hands you the answer without showing which assumptions you spent to get it. The graph works the other way. It is slower, and it forces you to commit to a picture — but that picture makes the kink, the corner, and the curvature show up as three separate things. A student who has studied the perfect-substitutes diagram, or seen two solutions appear under a U-shaped marginal cost, has learned something the equation cannot teach on its own: that $MRS = p_x/p_y$ and $p = MC$ are not the whole theory, only its most convenient case.
