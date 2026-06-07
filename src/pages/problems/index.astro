@@ -3,19 +3,16 @@ import Base from '../../layouts/Base.astro';
 ---
 <Base
   title="Problems — Amit Goyal"
-  description="Research-to-problem PDFs translating landmark economics papers into MA-level problems."
+  description="Problem sets that accompany the Econschool YouTube lectures, fully worked at MA level."
   current="problems"
 >
   <section style="padding: 2rem 0 3rem;">
-    <p class="eyebrow">Research-to-problem series</p>
+    <p class="eyebrow">To go with the lectures</p>
     <h1 style="font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 1rem;">
-      Problems from papers
+      Problem sets
     </h1>
     <p style="max-width: 60ch; font-size: 1.1rem; color: var(--ink); line-height: 1.6;">
-      A growing series of problem sets, each taking a landmark paper in economics and
-      turning it into a rigorous, fully-worked problem that a strong MA student can solve.
-      The goal is not the result &mdash; the result is in the paper. The goal is the
-      <em>route</em> from primitive assumptions to the result, made walkable.
+      A growing series of problem sets to work through alongside the YouTube lectures.
     </p>
   </section>
 
@@ -26,9 +23,8 @@ import Base from '../../layouts/Base.astro';
       <p class="placeholder-eyebrow">In preparation</p>
       <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">First batch coming soon</h2>
       <p>
-        The first problem sets to be published here will cover Akerlof on the market for
-        lemons, Diamond &amp; Dybvig on bank runs, and Milgrom on auction design. Each will
-        ship as a PDF with a video walkthrough on the YouTube channel.
+        The first problem sets are in preparation. Each will ship as a PDF, paired with a
+        video walkthrough on the YouTube channel.
       </p>
       <p style="margin-top: 1.5rem;">
         In the meantime, the existing material is on
@@ -45,7 +41,7 @@ import Base from '../../layouts/Base.astro';
       {problems.map((p) => (
         <article class="problem-row">
           <div class="problem-meta">
-            <p class="problem-paper">{p.paper}</p>
+            <p class="problem-topic">{p.topic}</p>
             <h3 class="problem-title">{p.title}</h3>
             <p class="problem-blurb">{p.blurb}</p>
             <p>
