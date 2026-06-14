@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex';
 // This is a user/organization site (amitkumargoyal.github.io), so base = '/'.
 // If you ever move it to a project repo, change base to '/repo-name/'.
 export default defineConfig({
-  site: 'https://amitkumargoyal.github.io',
+  site: 'https://amitkumargoyal.com',
   base: '/',
   integrations: [
     mdx({
