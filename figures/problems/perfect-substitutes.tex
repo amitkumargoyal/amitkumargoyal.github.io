@@ -66,8 +66,8 @@
   },
 }
 \tikzset{
-  indiff/.style={violet, very thick},                     % indifference curve
-  budget/.style={terracotta, very thick},                 % budget line
+  indiff/.style={ink, thick},                     % indifference curve
+  budget/.style={terracotta, thick},                 % budget line
   optimum/.style={circle, fill=violet, inner sep=1.6pt},  % optimal bundle
 }
 
@@ -164,11 +164,11 @@ Since $\MU_x/p_x < \MU_y/p_y$, every dollar buys more utility on yogurt, so the 
     % Indifference curves: u = x + 2y  =>  y = u/2 - x/2  (slope -1/2).
     % Two levels are labelled to show utility rising up and to the right;
     % the middle curve is left unlabelled as visual context.
-    \addplot[indiff, opacity=0.30, domain=0:2] {1   - 0.5*x}
+    \addplot[indiff, opacity = 0.5, domain=0:2] {1   - 0.5*x}
       node[pos=0.5, above right=-1pt, font=\scriptsize, text=inksoft, opacity=1] {$u=2$};
-    \addplot[indiff, opacity=0.55, domain=0:5] {2.5 - 0.5*x};
-    \addplot[indiff, domain=0:8] {4 - 0.5*x}
-      node[pos=0.66, above right=-1pt, font=\scriptsize, text=violet] {$u=8$};
+    \addplot[indiff, opacity = 0.7, domain=0:5] {2.5 - 0.5*x};
+    \addplot[indiff, opacity = 0.9, domain=0:8] {4 - 0.5*x}
+      node[pos=0.66, above right=-1pt, font=\scriptsize, text=ink] {$u=8$};
 
     % Budget line: 4x + 5y = 20  =>  y = 4 - 0.8x  (slope -4/5)
     \addplot[budget, domain=0:5] {4 - 0.8*x}
@@ -176,7 +176,7 @@ Since $\MU_x/p_x < \MU_y/p_y$, every dollar buys more utility on yogurt, so the 
 
     % Optimum at the corner (0,4)
     \node[optimum] at (axis cs:0,4) {};
-    \node[font=\scriptsize, anchor=west, text=ink]
+    \node[font=\scriptsize, anchor=west, text=violet]
       at (axis cs:0.05,4.25) {$(x^\star,y^\star)=(0,4)$};
   \end{axis}
 \end{tikzpicture}
