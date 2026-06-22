@@ -1,6 +1,17 @@
 ---
 import Base from '../../layouts/Base.astro';
+
+const problems = [
+  {
+    topic: 'Consumer theory',
+    title: 'Perfect substitutes',
+    blurb: 'Optimal choice when indifference curves are straight lines — a corner solution — with a companion bus-versus-metro exercise.',
+    pdf: '/problems/perfect-substitutes.pdf',
+    video: 'https://youtu.be/qKRKmEKNqFQ',
+  },
+];
 ---
+
 <Base
   title="Problems — Amit Goyal"
   description="Worked problems with video walkthroughs, each paired with an exercise, to accompany the Econschool YouTube lectures."
@@ -19,65 +30,48 @@ import Base from '../../layouts/Base.astro';
 
   <hr class="rule-sage" />
 
-  <section class="placeholder">
-    <div class="placeholder-card">
-      <p class="placeholder-eyebrow">In preparation</p>
-      <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">First batch coming soon</h2>
-      <p>
-        The first problems are in preparation. Each ships as a PDF &mdash; one fully
-        worked problem with a video walkthrough, plus an exercise to try yourself.
-      </p>
-      <p style="margin-top: 1.5rem;">
-        In the meantime, the existing material is on
-        <a href="https://www.youtube.com/@econ.school" target="_blank" rel="noopener">YouTube</a>
-        and at <a href="https://econschool.in">Econschool</a>.
-      </p>
-    </div>
+  <section class="problem-list">
+    {problems.map((p) => (
+      <article class="problem-row">
+        <p class="problem-topic">{p.topic}</p>
+        <h2 class="problem-title">{p.title}</h2>
+        <p class="problem-blurb">{p.blurb}</p>
+        <p class="problem-links">
+          <a href={p.pdf} target="_blank" rel="noopener noreferrer">Download PDF</a>
+          <span class="sep"> · </span>
+          <a href={p.video} target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        </p>
+      </article>
+    ))}
   </section>
-
-  <!--
-    When ready, replace the placeholder section with a list like this:
-
-    <section class="problem-list">
-      {problems.map((p) => (
-        <article class="problem-row">
-          <div class="problem-meta">
-            <p class="problem-topic">{p.topic}</p>
-            <h3 class="problem-title">{p.title}</h3>
-            <p class="problem-blurb">{p.blurb}</p>
-            <p>
-              <a href={p.pdf}>Download PDF</a> &nbsp;·&nbsp;
-              <a href={p.video}>Watch on YouTube</a>
-            </p>
-          </div>
-        </article>
-      ))}
-    </section>
-  -->
 </Base>
 
 <style>
-  .placeholder { padding: 2rem 0; }
-  .placeholder-card {
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    padding: 2.5rem;
-    max-width: 36rem;
-    position: relative;
+  .problem-list { padding: 1rem 0 2rem; }
+  .problem-row {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
   }
-  .placeholder-card::before {
-    content: "";
-    position: absolute;
-    top: 8px; left: 8px; right: 8px; bottom: 8px;
-    border: 1px solid var(--sage-soft);
-    pointer-events: none;
-  }
-  .placeholder-eyebrow {
+  .problem-row:first-child { border-top: 1px solid var(--rule); }
+  .problem-topic {
     font-variant: small-caps;
     letter-spacing: 0.12em;
-    color: var(--sage);
+    color: var(--terracotta);
     font-size: 0.85rem;
-    font-weight: 600;
+    margin: 0 0 0.35rem;
+  }
+  .problem-title {
+    font-family: var(--display);
+    color: var(--violet);
+    font-weight: 500;
+    font-size: 1.75rem;
     margin: 0 0 0.5rem;
   }
+  .problem-blurb {
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0 0 0.75rem;
+  }
+  .problem-links { margin: 0; }
+  .problem-links .sep { color: var(--ink-faint); }
 </style>
