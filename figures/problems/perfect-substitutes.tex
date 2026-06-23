@@ -125,13 +125,13 @@
 % =====================================================================
 \heading{Solved problem}
 
-A student has a weekly food budget of \$20 to spend on two goods:
+During exam week a student wants only to stay awake, and treats tea and coffee as interchangeable sources of caffeine. Take one cup of coffee to carry twice the caffeine of one cup of tea, and let
 \begin{itemize}
-  \item $x$: packets of instant noodles, at $p_x=4$ each;
-  \item $y$: cups of fruit yogurt, at $p_y=5$ each.
+  \item $x$: cups of tea, at $p_x=4$ each;
+  \item $y$: cups of coffee, at $p_y=5$ each.
 \end{itemize}
 
-Preferences are represented by $u(x,y)=x+2y$, so one more cup of yogurt is worth twice as much as one more packet of noodles. Find the optimal bundle $(x^\star,y^\star)$ and illustrate the budget line and the optimal choice in a diagram.
+Total caffeine, measured in cups-of-tea, is then $u(x,y)=x+2y$. With a weekly budget of \$20 for hot drinks, find the optimal bundle $(x^\star,y^\star)$ and illustrate the budget line and the optimal choice in a diagram.
 
 \subheading{Solution}
 The student solves
@@ -148,7 +148,7 @@ Compare the marginal utility per dollar spent on each good:
   \qquad\text{and}\qquad
   \frac{\MU_y}{p_y}=\frac{2}{5}.
 \]
-Since $\MU_x/p_x < \MU_y/p_y$, every dollar buys more utility on yogurt, so the student spends the whole budget on $y$. With $M=20$ and $p_y=5$, the optimal bundle is
+Since $\MU_x/p_x < \MU_y/p_y$, every dollar buys more caffeine from coffee, so the student spends the whole budget on $y$ (coffee). With $M=20$ and $p_y=5$, the optimal bundle is
 \[
   (x^\star,y^\star)=\Bigl(0,\tfrac{M}{p_y}\Bigr)=(0,4).
 \]
@@ -158,7 +158,7 @@ Since $\MU_x/p_x < \MU_y/p_y$, every dollar buys more utility on yogurt, so the 
   \begin{axis}[
       microecon,
       xmin=-0.3, xmax=9, ymin=-0.3, ymax=5,
-      xlabel={Noodles ($x$)}, ylabel={Yogurt ($y$)},
+      xlabel={Tea ($x$)}, ylabel={Coffee ($y$)},
       xtick={2,5,8}, ytick={1,2.5,4},
       clip mode=individual,
   ]
