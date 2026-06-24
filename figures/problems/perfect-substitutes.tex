@@ -66,7 +66,8 @@
   },
 }
 \tikzset{
-  indiff/.style={ink, thick},                     % indifference curve
+  indiff/.style={ink, thick},                     % indifference curve (optimal)
+  indiffsoft/.style={ink, thin},                  % indifference curve (context)
   budget/.style={terracotta, thick},                 % budget line
   optimum/.style={circle, fill=violet, inner sep=1.6pt},  % optimal bundle
 }
@@ -169,10 +170,10 @@ Since $\MU_x/p_x < \MU_y/p_y$, every dollar buys more caffeine from coffee, so t
     % Indifference curves: u = x + 2y  =>  y = u/2 - x/2  (slope -1/2).
     % Two levels are labelled to show utility rising up and to the right;
     % the middle curve is left unlabelled as visual context.
-    \addplot[indiff, opacity = 0.5, domain=0:2] {1   - 0.5*x}
-      node[pos=0.5, above right=-1pt, font=\scriptsize, text=inksoft, opacity=1] {$u=2$};
-    \addplot[indiff, opacity = 0.7, domain=0:5] {2.5 - 0.5*x};
-    \addplot[indiff, opacity = 0.9, domain=0:8] {4 - 0.5*x}
+    \addplot[indiffsoft, domain=0:2] {1   - 0.5*x}
+      node[pos=0.5, above right=-1pt, font=\scriptsize, text=inksoft] {$u=2$};
+    \addplot[indiffsoft, domain=0:5] {2.5 - 0.5*x};
+    \addplot[indiff, domain=0:8] {4 - 0.5*x}
       node[pos=0.66, above right=-1pt, font=\scriptsize, text=ink] {$u=8$};
 
     % Budget line: 4x + 5y = 20  =>  y = 4 - 0.8x  (slope -4/5)

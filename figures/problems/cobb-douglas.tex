@@ -2,7 +2,7 @@
 %  ECONSCHOOL — PROBLEMS SHEET
 %  One solved problem (with a TikZ figure) + one near-twin exercise.
 %
-%  Compile:  pdflatex perfect-complements.tex   (run twice for the footer)
+%  Compile:  pdflatex cobb-douglas.tex   (run twice for the footer)
 %  No font installation needed: text and maths are Computer Modern
 %  (Latin Modern where available), the same maths face the site renders
 %  with KaTeX.
@@ -116,117 +116,134 @@
 \sagerule
 
 % ---------- Title (replace per sheet) --------------------------------
-{\color{violet}\fontsize{26}{30}\selectfont Perfect complements\par}
+{\color{violet}\fontsize{26}{30}\selectfont Cobb--Douglas\par}
 \vspace{0.2em}
-{\color{inkfaint}\itshape Consumer theory \;\textperiodcentered\; Problem~2
+{\color{inkfaint}\itshape Consumer theory \;\textperiodcentered\; Problem~3
  \quad\textperiodcentered\quad
- Video: \href{https://youtu.be/S4v03C39jAI}{youtu.be/S4v03C39jAI}\par}
+ Video: \href{https://youtu.be/SsDJB3uKrfw}{youtu.be/SsDJB3uKrfw}\par}
 \sagerule
 
 % =====================================================================
 \heading{Solved problem}
 
-A student is making pancakes for the week. Each pancake uses one cup of flour, and a cup of milk is enough for two pancakes; flour with no milk, or milk with no flour, makes no more pancakes. Writing
+A student splits a monthly allowance between food and outings. Writing
 \begin{itemize}
-  \item $x$: cups of flour, at $p_x=4$ each;
-  \item $y$: cups of milk, at $p_y=4$ each,
+  \item $x$: food, at price $p_x$;
+  \item $y$: outings, at price $p_y$,
 \end{itemize}
 
-the number of pancakes is $u(x,y)=\min\{x,2y\}$. With a budget of \$18 for ingredients, find the optimal bundle $(x^\star,y^\star)$ and illustrate the budget line and the optimal choice in a diagram.
+tastes are Cobb--Douglas, $u(x,y)=x^\alpha y^\beta$ with $\alpha,\beta>0$. With a budget of $M$ dollars, find the demand functions $x^d(p_x,p_y,M)$ and $y^d(p_x,p_y,M)$. Then illustrate the choice for $\alpha=2$, $\beta=1$, $p_x=p_y=2$ and a \$12 budget.
 
 \subheading{Solution}
 The student solves
 \[
   \begin{aligned}
-    \max_{(x,y)\in\mathbb{R}^2_+}\quad & \min\{x,2y\}\\
-    \text{s.t.}\quad & 4x+4y\le 18.
+    \max_{(x,y)\in\mathbb{R}^2_{++}}\quad & x^\alpha y^\beta\\
+    \text{s.t.}\quad & p_x x + p_y y \le M.
   \end{aligned}
 \]
 
-Extra flour does nothing without the milk to go with it, and extra milk does nothing without the flour. So at the optimum nothing is wasted,
+The student wants some of both goods, so the best bundle is interior. There the indifference curve just touches the budget line, which means the marginal rate of substitution equals the price ratio:
 \[
-  x = 2y,
+  \mathrm{MRS}=\frac{\MU_x}{\MU_y}
+  =\frac{\alpha x^{\alpha-1}y^{\beta}}{\beta x^{\alpha}y^{\beta-1}}
+  =\frac{\alpha\,y}{\beta\,x}
+  =\frac{p_x}{p_y}.
 \]
-and the budget binds. Substituting $x=2y$ into $4x+4y=18$,
+
+Rearranged, this says $\beta\,p_x x=\alpha\,p_y y$: the money spent on food and the money spent on outings stand in the ratio $\alpha:\beta$. The budget binds, $p_x x+p_y y=M$, so each share is a fixed slice of the budget,
 \[
-  4(2y)+4y = 12y = 18
-  \quad\Longrightarrow\quad
-  y=1.5,\qquad x=2y=3.
+  p_x\,x^d=\frac{\alpha}{\alpha+\beta}\,M,
+  \qquad
+  p_y\,y^d=\frac{\beta}{\alpha+\beta}\,M,
 \]
-The optimal bundle is $(x^\star,y^\star)=(3,1.5)$, giving $u=\min\{3,3\}=3$ — three pancakes.
+which gives the demand functions
+\[
+  x^d(p_x,p_y,M)=\frac{\alpha}{\alpha+\beta}\,\frac{M}{p_x},
+  \qquad
+  y^d(p_x,p_y,M)=\frac{\beta}{\alpha+\beta}\,\frac{M}{p_y}.
+\]
+
+So the student always spends the constant fractions $\tfrac{\alpha}{\alpha+\beta}$ and $\tfrac{\beta}{\alpha+\beta}$ of the budget on the two goods, whatever the prices or income are.
+
+With $\alpha=2$, $\beta=1$, $p_x=p_y=2$ and $M=12$ the shares are $\tfrac23$ and $\tfrac13$, so
+\[
+  x^d(2,2,12)=\frac{2}{3}\cdot\frac{12}{2}=4,
+  \qquad
+  y^d(2,2,12)=\frac{1}{3}\cdot\frac{12}{2}=2,
+\]
+that is $(x^\star,y^\star)=(4,2)$: \$8 on food and \$4 on outings.
 
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[
       microecon,
-      xmin=-0.3, xmax=5.6, ymin=-0.3, ymax=5,
-      xlabel={Flour ($x$)}, ylabel={Milk ($y$)},
-      xtick={3,4.5}, ytick={1.5,4.5},
+      xmin=-0.3, xmax=6.9, ymin=-0.3, ymax=6.9,
+      xlabel={Food ($x$)}, ylabel={Outings ($y$)},
+      xtick={4,6}, ytick={2,6},
       clip mode=individual,
   ]
-    % Budget set: affordable triangle (0,0)-(4.5,0)-(0,4.5)
+    % Budget set: affordable triangle (0,0)-(6,0)-(0,6)
     \addplot[draw=none, fill=terracottasoft, fill opacity=0.16]
-      coordinates {(0,0) (4.5,0) (0,4.5)} \closedcycle;
+      coordinates {(0,0) (6,0) (0,6)} \closedcycle;
 
-    % Ray of no-waste bundles: x = 2y  (the corners line up here)
-    \draw[sage, thick, dashed]
-      (axis cs:0,0) -- (axis cs:4.7,2.35)
-      node[pos=0.97, below right=-2pt, font=\scriptsize, text=inksoft] {$x=2y$};
+    % Lower indifference curve for context: u = 16, y = 16/x^2
+    \addplot[indiffsoft, domain=1.62:5.7, samples=120] {16/(x^2)}
+      node[pos=1, right=-1pt, font=\scriptsize, text=inksoft] {$u=16$};
 
-    % L-shaped indifference curves, corners on x = 2y.
-    \draw[indiffsoft]                                           % u = 2 (context)
-      (axis cs:2,4.2) -- (axis cs:2,1) -- (axis cs:4.8,1)
-      node[right=1pt, font=\scriptsize, text=inksoft] {$u=2$};
-    \draw[indiff]                                               % u = 3 (optimal level)
-      (axis cs:3,4.2) -- (axis cs:3,1.5) -- (axis cs:4.8,1.5)
-      node[right=1pt, font=\scriptsize, text=ink] {$u=3$};
+    % Optimal indifference curve: u = x^2 y = 32, y = 32/x^2
+    \addplot[indiff, domain=2.29:5.7, samples=120] {32/(x^2)}
+      node[pos=1, right=-1pt, font=\scriptsize, text=ink] {$u=32$};
 
-    % Budget line: 4x + 4y = 18  =>  x + y = 4.5
-    \addplot[budget, domain=0:4.5] {4.5 - x}
-      node[pos=0.16, above right=-1pt, font=\scriptsize, text=terracotta] {Budget line};
+    % Budget line: 2x + 2y = 12  =>  x + y = 6
+    \addplot[budget, domain=0:6] {6 - x}
+      node[pos=0.14, above right=-1pt, font=\scriptsize, text=terracotta] {Budget line};
 
-    % Optimum at the kink (3, 1.5): on the budget line and on the ray
-    \draw[inkfaint, dotted] (axis cs:3,0) -- (axis cs:3,1.5) -- (axis cs:0,1.5);
-    \node[optimum] (opt) at (axis cs:3,1.5) {};
+    % Optimum at the tangency (4, 2)
+    \draw[inkfaint, dotted] (axis cs:4,0) -- (axis cs:4,2) -- (axis cs:0,2);
+    \node[optimum] (opt) at (axis cs:4,2) {};
     \node[font=\scriptsize, anchor=south west, text=violet] (optlabel)
-      at (axis cs:3.25,2.45) {$(x^\star,y^\star)=(3,1.5)$};
-    \draw[-{Stealth[length=1.5mm]}, violet, thin] (optlabel.south west) -- (opt);
+      at (axis cs:4,2) {$(x^\star,y^\star)=(4,2)$};
+  %  \draw[-{Stealth[length=1.5mm]}, violet, thin] (optlabel.south west) -- (opt);
   \end{axis}
 \end{tikzpicture}
 \end{center}
 \vspace{-0.2em}
 {\color{inkfaint}\footnotesize\itshape
- Figure~1.\enspace With perfect complements the indifference curves are
- L-shaped, their corners lying on the ray $x=2y$ where flour and milk are in
- recipe proportion. The best the budget reaches is the corner of the highest
- L --- on the budget line and on the ray at once --- so nothing is wasted:
- $(x^\star,y^\star)=(3,1.5)$.\par}
+ Figure~1.\enspace With Cobb--Douglas tastes the indifference curves are smooth
+ and convex. The student climbs to the highest curve the budget
+ allows, where it just touches the budget line. At that tangency the spending on
+ each good is a fixed fraction of the budget --- here $\tfrac23$ on food and
+ $\tfrac13$ on outings --- giving $(x^\star,y^\star)=(4,2)$.\par}
 \sagerule
 
 % =====================================================================
 \heading{Exercise}
 
-A student eats dal and rice in the canteen. One serving of dal with one serving of rice makes a plate; a serving of dal with no rice, or rice with no dal, is no use. Writing
+A household buys grain and vegetables. It needs a guaranteed minimum of each before anything else --- $\gamma_x$ of grain and $\gamma_y$ of vegetables --- and beyond those floors its tastes are Cobb--Douglas. Writing
 \begin{itemize}
-  \item $x$: servings of dal, at $p_x=2$ each;
-  \item $y$: servings of rice, at $p_y=1$ each,
+  \item $x$: grain, at price $p_x$;
+  \item $y$: vegetables, at price $p_y$,
 \end{itemize}
 
-the number of plates is $u(x,y)=\min\{x,y\}$. The student has \$15 to spend.
+the household's tastes are Stone--Geary,
+\[
+  u(x,y)=(x-\gamma_x)^\alpha\,(y-\gamma_y)^\beta,
+  \qquad \alpha,\beta>0,\quad \gamma_x,\gamma_y\ge 0,
+\]
+defined for $x\ge\gamma_x$ and $y\ge\gamma_y$. The budget is $M$ dollars, with $M>p_x\gamma_x+p_y\gamma_y$ so that the floors are affordable.
 
 \begin{enumerate}
-  \item On a diagram, draw the budget set, the budget line, the ray of bundles that waste nothing, and a couple of indifference curves.
+  \item Find the demand functions $x^d(p_x,p_y,M)$ and $y^d(p_x,p_y,M)$. \emph{Hint:} let $\tilde x=x-\gamma_x$ and $\tilde y=y-\gamma_y$; the problem becomes Cobb--Douglas in $\tilde x,\tilde y$ with the leftover budget $M-p_x\gamma_x-p_y\gamma_y$.
 
-  \item Find the utility-maximising bundle $(x^\star,y^\star)$ and the number of plates.
+  \item Take $\alpha=2$, $\beta=1$, $\gamma_x=1$, $\gamma_y=2$, $p_x=p_y=2$ and $M=12$. Find the optimal bundle, and compare it with the Cobb--Douglas answer $(4,2)$ from the solved problem.
 \end{enumerate}
 
-\subheading{Extension: a price rise}
-
-Suppose a poor harvest pushes the price of dal up to $p_x=4$, with the rice price and the \$15 budget unchanged.
+\subheading{Extension: shares are no longer constant}
 
 \begin{enumerate}
   \setcounter{enumi}{2}
-  \item Find the new optimal bundle and the number of plates.
+  \item Using your demand function $x^d$ from part~1, show that a one-dollar rise in income $M$ raises spending on grain by the fixed amount $\tfrac{\alpha}{\alpha+\beta}$, yet the \emph{share} of total spending that goes to grain still changes with $M$. Find that share as a function of $M$ and show it approaches $\tfrac{\alpha}{\alpha+\beta}$ as $M\to\infty$.
 \end{enumerate}
 
 \medskip
