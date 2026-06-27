@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import katex from 'katex';
 
 const problemMath = katex.renderToString(
-  String.raw`\text{Let } u(x,y) = x^{\alpha} y^{1-\alpha}.\;\text{Show that } x^\star(p,m) = \tfrac{\alpha m}{p_x}.`,
+  String.raw`\text{Let } u(x,y) = x^{\alpha} y^{1-\alpha}.\;\text{Show that } x^d(p,m) = \tfrac{\alpha m}{p_x}.`,
   { displayMode: false, throwOnError: false, output: 'html' }
 );
 ---
